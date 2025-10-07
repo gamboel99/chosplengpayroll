@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chospleng Payroll - PT. Chospleng Indonesia</title>
+  <link rel="stylesheet" href="styles.css" />
+  <!-- jsPDF CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <img src="assets/logo.png" alt="logo" class="logo" />
+        <h1>PT. Chospleng</h1>
+      </div>
+      <nav id="nav">
+        <button data-view="dashboard" class="nav-btn">Dashboard</button>
+        <button data-view="karyawan" class="nav-btn">Karyawan</button>
+        <button data-view="absensi" class="nav-btn">Absensi</button>
+        <button data-view="payroll" class="nav-btn">Payroll</button>
+        <button data-view="backup" class="nav-btn">Backup / Export</button>
+        <button id="logoutBtn" class="nav-btn danger">Logout</button>
+      </nav>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="top-left">
+          <button id="menu-toggle" class="icon">☰</button>
+          <h2 id="page-title">Dashboard</h2>
+        </div>
+        <div class="top-right">
+          <div class="user">Admin</div>
+        </div>
+      </header>
+
+      <section class="content" id="content-area">
+        <!-- Login View -->
+        <div id="view-login" class="view active">
+          <div class="card card-center">
+            <img src="assets/logo.png" class="logo-large" alt="logo" />
+            <h3>Login Admin</h3>
+            <form id="loginForm">
+              <label>Username</label>
+              <input id="username" required />
+              <label>Password</label>
+              <input id="password" type="password" required />
+              <div style="display:flex;gap:8px;margin-top:12px">
+                <button type="submit" class="primary">Login</button>
+                <button type="button" id="fillDemo" class="ghost">Isi Demo</button>
+              </div>
+              <p class="muted">Akun demo: hrd/hrd123 & owner/owner123</p>
+            </form>
+          </div>
+        </div>
+
+        <!-- Dashboard -->
+        <div id="view-dashboard" class="view">
+          <div class="card">
+            <h3>Ringkasan</h3>
+            <div class="grid-3">
+              <div class="stat"><div class="big" id="stat-karyawan">0</div><div class="muted">Karyawan</div></div>
+              <div class="stat"><div class="big" id="stat-absensi">0</div><div class="muted">Total Absensi</div></div>
+              <div class="stat"><div class="big" id="stat-payroll">Rp 0</div><div class="muted">Payroll Periode</div></div>
+            </div>
+          </div>
+          <div class="card">
+            <h3>Daftar Singkat Karyawan</h3>
+            <div id="short-list"></div>
+          </div>
+        </div>
+
+        <!-- Karyawan -->
+        <div id="view-karyawan" class="view">
+          <div class="card">
+            <div class="row-between">
+              <h3>Data Karyawan</h3>
+              <div>
+                <button id="btnAddKaryawan" class="primary">Tambah Karyawan</button>
+                <button id="btnImportSample" class="ghost">Load Sample</button>
+              </div>
+            </div>
+            <div id="karyawan-list"></div>
+          </div>
+        </div>
+
+        <!-- Absensi -->
+        <div id="view-absensi" class="view">
+          <div class="card">
+            <h3>Absensi Harian</h3>
+            <form id="absensiForm" class="form-inline">
+              <label>Pilih Karyawan</label>
+              <select id="absensi-emp"></select>
+              <label>Tanggal</label>
+              <input type="date" id="absensi-date" required />
+              <label>Status</label>
+              <select id="absensi-status">
+                <option value="masuk">Masuk</option>
+                <option value="alfa">Alfa (Tanpa Keterangan)</option>
+                <option value="izin">Izin</option>
+                <option value="sakit">Sakit</option>
+                <option value="libur">Libur</option>
+              </select>
+              <label>Jam Datang</label>
+              <input type="time" id="absensi-in" />
+              <button id="btnAddAbsensi" class="primary">Simpan Absensi</button>
+            </form>
+            <div id="absensi-list"></div>
+          </div>
+        </div>
+
+        <!-- Payroll -->
+        <div id="view-payroll" class="view">
+          <div class="card">
+            <h3>Generate Payroll</h3>
+            <div class="row">
+              <label>Periode (bulan)</label>
+              <input type="month" id="payroll-period" value="" />
+              <button id="btnGeneratePayroll" class="primary">Generate</button>
+            </div>
+            <div id="payroll-result"></div>
+          </div>
+        </div>
+
+        <!-- Backup -->
+        <div id="view-backup" class="view">
+          <div class="card">
+            <h3>Backup & Export</h3>
+            <div style="display:flex;gap:8px;flex-wrap:wrap">
+              <button id="btnExportJSON" class="ghost">Export JSON</button>
+              <button id="btnImportJSON" class="ghost">Import JSON</button>
+              <button id="btnExportCSV" class="ghost">Export CSV Payroll (last generated)</button>
+              <input id="fileInput" type="file" accept=".json" style="display:none" />
+            </div>
+            <pre id="backup-log" class="muted"></pre>
+          </div>
+        </div>
+
+      </section>
+
+      <footer class="footer">
+        © PT. Chospleng Indonesia — Payroll System (Demo)
+      </footer>
+    </main>
+  </div>
+
+  <!-- Modal containers -->
+  <div id="modal-root"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+{
+  "employees": [
+    {
+      "id": "e1",
+      "name": "Rangga",
+      "role": "Cook",
+      "start": "2024-01-01",
+      "base": 50000,
+      "makan": 10000,
+      "bensin": 10000,
+      "tax": 0
+    },
+    {
+      "id": "e2",
+      "name": "Willy",
+      "role": "Kasir / Cookhelper",
+      "start": "2024-06-01",
+      "base": 50000,
+      "makan": 10000,
+      "bensin": 10000,
+      "tax": 0
+    }
+  ],
+  "attendance": [],
+  "lastPayroll": null
+}
