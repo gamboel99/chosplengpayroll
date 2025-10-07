@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Chospleng Payroll - PT. Chospleng Indonesia</title>
   <link rel="stylesheet" href="styles.css" />
-  <!-- Libraries -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
@@ -46,12 +45,14 @@
         <div class="form-like slip-sample">
           <div class="row"><label>Nama</label><input id="emp-name" /></div>
           <div class="row"><label>Jabatan</label><input id="emp-role" /></div>
-          <div class="row"><label>Tanggal Mulai</label><input id="emp-start" type="date" /></div>
+          <div class="row"><label>Tanggal Mulai Periode</label><input id="emp-start" type="date" /></div>
+          <div class="row"><label>Tanggal Akhir Periode</label><input id="emp-end" type="date" /></div>
           <div class="row"><label>Gaji Pokok (per hari)</label><input id="emp-base" type="number" value="50000" /></div>
           <div class="row"><label>Uang Makan</label><input id="emp-makan" type="number" value="10000" /></div>
           <div class="row"><label>Uang Bensin</label><input id="emp-bensin" type="number" value="10000" /></div>
           <div class="row"><label>Pajak (%)</label><input id="emp-tax" type="number" value="0" /></div>
-          <div style="display:flex;gap:8px;margin-top:8px"><button id="saveEmp" class="primary">Simpan</button><button id="newEmp" class="ghost">Bersihkan</button></div>
+          <div class="row fullwidth preview-area" id="calcPreview" style="grid-column:1 / -1"></div>
+          <div style="display:flex;gap:8px;margin-top:8px;grid-column:1 / -1"><button id="saveEmp" class="primary">Simpan</button><button id="newEmp" class="ghost">Bersihkan</button></div>
         </div>
         <div id="list-emp" class="list"></div>
       </section>
@@ -63,7 +64,7 @@
           <div class="row"><label>Tanggal</label><input id="att-date" type="date" /></div>
           <div class="row"><label>Status</label><select id="att-status"><option value="masuk">Masuk</option><option value="alfa">Alfa</option><option value="izin">Izin</option><option value="sakit">Sakit</option></select></div>
           <div class="row"><label>Jam Datang</label><input id="att-in" type="time" /></div>
-          <div style="display:flex;gap:8px;margin-top:8px"><button id="saveAtt" class="primary">Simpan Absensi</button><button id="clearAtt" class="ghost">Bersihkan</button></div>
+          <div style="display:flex;gap:8px;margin-top:8px;grid-column:1 / -1"><button id="saveAtt" class="primary">Simpan Absensi</button><button id="clearAtt" class="ghost">Bersihkan</button></div>
         </div>
         <div id="list-att" class="list"></div>
       </section>
