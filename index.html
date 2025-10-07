@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Chospleng Payroll - PT. Chospleng Indonesia</title>
+  <title>Chospleng Payroll v4 - PT. Chospleng Indonesia</title>
   <link rel="stylesheet" href="styles.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
@@ -16,7 +16,7 @@
       <nav id="top-nav" class="top-nav hidden">
         <div id="nav-hrd" class="nav-role hidden">
           <button data-view="karyawan" class="nav-btn">Data Karyawan</button>
-          <button data-view="absensi" class="nav-btn">Absensi</button>
+          <button data-view="absensi" class="nav-btn">Absensi Bulanan</button>
           <button data-view="payroll" class="nav-btn">Generate Payroll</button>
         </div>
         <div id="nav-owner" class="nav-role hidden">
@@ -39,7 +39,6 @@
         </form>
       </section>
 
-      <!-- HRD Views -->
       <section id="karyawan-view" class="card view hidden">
         <h3>Data Karyawan</h3>
         <div class="form-like slip-sample">
@@ -58,15 +57,15 @@
       </section>
 
       <section id="absensi-view" class="card view hidden">
-        <h3>Absensi</h3>
+        <h3>Absensi Bulanan</h3>
         <div class="form-like slip-sample">
           <div class="row"><label>Pilih Karyawan</label><select id="att-emp"></select></div>
-          <div class="row"><label>Tanggal</label><input id="att-date" type="date" /></div>
-          <div class="row"><label>Status</label><select id="att-status"><option value="masuk">Masuk</option><option value="alfa">Alfa</option><option value="izin">Izin</option><option value="sakit">Sakit</option></select></div>
-          <div class="row"><label>Jam Datang</label><input id="att-in" type="time" /></div>
-          <div style="display:flex;gap:8px;margin-top:8px;grid-column:1 / -1"><button id="saveAtt" class="primary">Simpan Absensi</button><button id="clearAtt" class="ghost">Bersihkan</button></div>
+          <div class="row"><label>Bulan</label><input id="att-month" type="month" /></div>
+          <div class="row fullwidth" style="grid-column:1 / -1"><div class="small">Petunjuk: Klik pada kotak tanggal untuk mengubah status (Masuk/Alfa/Izin/Sakit). Jika Masuk, masukkan jam datang. Sistem otomatis menghitung keterlambatan (lebih dari 08:00) dan potongan per periode.</div></div>
+          <div class="row fullwidth" style="grid-column:1 / -1"><button id="loadGrid" class="primary">Muat Grid Bulanan</button> <button id="saveGrid" class="ghost">Simpan Grid</button></div>
         </div>
-        <div id="list-att" class="list"></div>
+        <div id="grid-container" class="card" style="margin-top:12px"></div>
+        <div id="absensi-summary" class="card" style="margin-top:12px"></div>
       </section>
 
       <section id="payroll-view" class="card view hidden">
@@ -78,7 +77,6 @@
         <div id="pay-res"></div>
       </section>
 
-      <!-- Owner Views -->
       <section id="rekap-view" class="card view hidden">
         <h3>Rekap Gaji</h3>
         <div id="rekap-list"></div>
@@ -94,7 +92,6 @@
     <footer class="footer">© PT. Chospleng Indonesia</footer>
   </div>
 
-  <!-- slip modal -->
   <div id="modal" class="modal hidden"></div>
 
 <script src="app.js"></script>

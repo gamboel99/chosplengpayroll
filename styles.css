@@ -10,37 +10,42 @@
 .nav-btn{background:transparent;border:0;color:#fff;padding:8px 10px;border-radius:8px;cursor:pointer}
 .nav-right{margin-left:auto;color:#fff;display:flex;gap:8px;align-items:center}
 .link{background:transparent;border:0;color:var(--accent);cursor:pointer}
-.main{padding:18px;max-width:980px;margin:18px auto}
+.main{padding:18px;max-width:1100px;margin:18px auto}
 .card{background:var(--card);padding:16px;border-radius:12px;box-shadow:0 6px 18px rgba(15,23,42,0.06);margin-bottom:12px}
 .center{max-width:420px;margin:60px auto;text-align:center}
 .form-like{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .form-like .row{display:flex;flex-direction:column}
 .form-like label{font-size:13px;color:var(--muted);margin-bottom:6px}
-input,select{padding:10px;border-radius:8px;border:1px solid #e9eef3}
+input,select,textarea{padding:10px;border-radius:8px;border:1px solid #e9eef3}
 .primary{background:var(--accent);border:0;padding:10px 14px;border-radius:8px;cursor:pointer;color:#111;font-weight:600}
 .ghost{background:transparent;border:1px solid #e6e6e6;padding:8px 12px;border-radius:8px;cursor:pointer}
 .list{margin-top:12px}
 .small{font-size:13px;color:var(--muted)}
 .footer{text-align:center;padding:12px;color:var(--muted)}
 
-/* slip-sample style: visual that matches printed slip */
-.slip-sample{background:#fff;border:1px solid #f0f0f0;padding:12px;border-radius:8px}
+/* grid calendar */
+.calendar{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.day{border:1px solid #f0f0f0;border-radius:8px;padding:8px;min-height:88px;background:#fff;position:relative}
+.day .date{font-weight:700;margin-bottom:6px}
+.day .status{font-size:12px;padding:4px 6px;border-radius:6px;display:inline-block;background:#f3f4f6}
+.timein{font-size:12px;margin-top:6px;color:var(--muted)}
+.day.clickable{cursor:pointer;transition:transform .08s}
+.day.clickable:active{transform:scale(.995)}
+
+/* slip styles */
 .slip-like{max-width:420px;margin:0 auto;background:#fff;padding:18px;border-radius:8px;border:1px solid #eee;box-shadow:0 6px 20px rgba(15,23,42,0.04)}
 .slip-header{display:flex;justify-content:space-between;align-items:center}
-.slip-title{font-weight:700}
 .slip-table{width:100%;border-collapse:collapse;margin-top:8px}
 .slip-table th, .slip-table td{padding:8px;border:1px solid #f2f2f2;text-align:left}
 .modal{position:fixed;left:0;top:0;right:0;bottom:0;background:rgba(0,0,0,0.45);display:flex;align-items:center;justify-content:center;padding:12px}
-.modal .card{max-width:720px;width:100%;max-height:85vh;overflow:auto;padding:18px}
+.modal .card{max-width:920px;width:100%;max-height:85vh;overflow:auto;padding:18px}
 .hidden{display:none}
 #barcode{max-width:260px;display:block;margin-left:auto;margin-top:6px}
-.preview-area{background:#fff;border-radius:8px;padding:12px;border:1px dashed #eee}
 
 /* responsive */
-@media (max-width:720px){
+@media (max-width:900px){
   .form-like{grid-template-columns:1fr}
-  .brand-text h1{font-size:16px}
-  .logo{width:48px;height:48px}
   .main{padding:12px}
+  .calendar .day{min-height:72px}
   .slip-like{padding:12px}
 }
